@@ -1,6 +1,8 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
-const client = require('rest'); //rest.js
+const axios = require('axios');
+
+import MyAppBar from './appbar/appbar';
 
 class App extends React.Component {
     constructor(props) {
@@ -9,9 +11,7 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        client({method: 'GET', path: '/posts'}).done(response => {
-            this.setState({posts: response.entity._embedded.posts});
-        });
+        axios.get('/posts').then(response => this.setState({posts: response.data}));
     }
 
     render(){
@@ -24,19 +24,22 @@ class App extends React.Component {
 class PostsList extends React.Component {
     render() {
         const posts = this.props.posts.map(post =>
-            <Post key={post._links.self.href} post={post}/>
+            <Post key={post.id} post={post}/>
         );
         return (
-            <table>
-                <tbody>
-                <tr>
-                    <th>Theme</th>
-                    <th>Description</th>
-                    <th>Text</th>
-                </tr>
-                {posts}
-                </tbody>
-            </table>
+            <div>
+                <MyAppBar />
+                <table>
+                    <tbody>
+                    <tr>
+                        <th>Theme</th>
+                        <th>Description</th>
+                        <th>Text</th>
+                    </tr>
+                    {posts}
+                    </tbody>
+                </table>
+            </div>
         )
     }
 }
