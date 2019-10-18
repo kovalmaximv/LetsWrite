@@ -3,6 +3,9 @@ package com.NeuroActivity.letswrite.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/**
+ * commit for my contributions statistic in panel!
+ */
 @RequestMapping("/")
 @Controller
 public class MainController {
