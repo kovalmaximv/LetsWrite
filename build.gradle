@@ -25,4 +25,8 @@ dependencies {
 	compile('org.postgresql:postgresql')
 	compile('org.projectlombok:lombok')
 	compile('javax.xml.bind:jaxb-api')
+
+    compile("org.springframework.boot:spring-boot-starter-security")
+	// https://mvnrepository.com/artifact/org.springframework.security/spring-security-core
+	compile group: 'org.springframework.security', name: 'spring-security-core', version: '5.2.0.RELEASE'
 }
